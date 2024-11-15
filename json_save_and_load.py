@@ -4,15 +4,19 @@ from topological import topological_sort
 import json
 
 
-def json_generate(server_side_mod_path):
+def json_gen_server(server_side_mod_path):
 
     module_graph = load_all_mods(server_side_mod_path)
     mod_data = {}
     for modId, node in modules.items():
+        node.server = True
         mod_data[modId] = node.to_dict()
-    file_path = 'mod_data.json'
+    file_path = 'server_mod_data.json'
     with open(file_path, 'w') as f:
         json.dump(mod_data, f, indent=4)
+
+def json_merge(server_json,client_json): #WIP
+    pass
 
 
 def json_load():

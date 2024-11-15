@@ -6,25 +6,17 @@ import re
 from module_graph import *
 
 modules = {}
-i = 0
-j = 0
 
 # get_module is to make sure not to create a new node when there is already exist one
 def get_module(modId):
-    global i , j
     if modId not in modules:
-        i = i + 1
-        print('creating a new mod',modId,i)
         modules[modId] = ModuleNode(modId)
-    j = j + 1
-    print('now is mod ', j)
     return modules[modId]
 
 # toml_reader is to read all the mods.toml in jar and append into the graph
 def toml_reader(jar_path):
     with zipfile.ZipFile(jar_path, 'r') as jar:
         # print("Files in jar:", jar.namelist())
-        i = 0
 
         if 'META-INF/mods.toml' in jar.namelist():
             with jar.open('META-INF/mods.toml') as toml_file:

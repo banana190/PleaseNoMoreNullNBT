@@ -7,24 +7,26 @@ import os
 import glob
 import json
 
-client_side_mod_path = ''
-server_side_mod_path = 'D:/testing_server/mods'
 
-jsl.json_generate(server_side_mod_path)
+server_side_mod_path = '../mods'
 
-while(True):
-    module_graph = jsl.json_load()
-    sorted_modules = topological_sort(module_graph)
-    fde.apply_disabled_mod(module_graph)
 
-    #start server
-    #server started
+if __name__ == '__main__':
+    jsl.json_gen_server(server_side_mod_path)
 
-    #start client 10 times ReallyInnocent
-    #if client get kickout from the server in 3 second continue else break and print sorted_modules
+    while(True):
+        module_graph = jsl.json_load()
+        sorted_modules = topological_sort(module_graph)
+        fde.apply_disabled_mod(module_graph)
 
-    fde.re_enable_mods(module_graph)
-    jsl.json_save(module_graph)
+        #start server
+        #server started
+
+        #start client 10 times ReallyInnocent
+        #if client get kickout from the server in 3 second continue else break and print sorted_modules
+
+        fde.re_enable_mods(module_graph)
+        jsl.json_save(module_graph)
 
 
 
